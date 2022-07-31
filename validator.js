@@ -28,7 +28,7 @@ function Validator(options) {
                     );
                     break;
                 default:
-                    errorMessage = rules[i](inputElement.value);
+                    errorMessage = rules[i](inputElement.value.trim());
             }
 
             if (errorMessage) {
@@ -86,7 +86,7 @@ function Validator(options) {
                                         ).value;
                                     break;
                                 default:
-                                    values[input.name] = input.value;
+                                    values[input.name] = input.value.trim();
                                     break;
                             }
                             return values;
@@ -161,7 +161,7 @@ Validator.checkConfirmed = function (selector, getConfirmValue, message) {
     return {
         selector: selector,
         test: function (value) {
-            return value === getConfirmValue()
+            return value.trim() === getConfirmValue()
                 ? undefined
                 : message || "Giá trị nhập vào chưa chính xác!";
         },

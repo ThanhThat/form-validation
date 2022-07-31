@@ -79,7 +79,7 @@
                 Validator.isRequired('#confirm-password'),
                 Validator.isRequired('input[name="gender"]'),
                 Validator.checkConfirmed('#confirm-password', function() {
-                    return document.querySelector('#password').value;
+                    return document.querySelector('#password').value.trim();
                 })
             ],
             // submitBtn: ('.form__btn'),
