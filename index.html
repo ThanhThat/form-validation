@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="element">
+            <div class="heading">
+                <img src="./logo-snb.webp" alt="logo-batman" class="heading__img">
+                <h1 class="heading__title">Manteo</h1>
+                <p class="heading__desc">Welcome to your best journey</p>
+            </div>
+
+            <form action="" id="form">
+                <div class="form__group">
+                    <label for="username" class="form__label">Full name</label>
+                    <input type="text" placeholder="Enter Full Name" name="fullname" class="form__control" id="fullname">
+                    <span class="form__message"></span>
+                </div>
+
+                <div class="form__group">
+                    <label for="email" class="form__label">Email</label>
+                    <input type="email" placeholder="Enter your email" name="email" class="form__control" id="email">
+                    <span class="form__message"></span>
+                </div>
+
+                <div class="form__group">
+                    <label for="password" class="form__label">Password</label>
+                    <input type="password" placeholder="Enter password" name="password" class="form__control" id="password">
+                    <span class="form__message"></span>
+                </div>
+
+                <div class="form__group">
+                    <label for="confirm-password" class="form__label">Confirm Password</label>
+                    <input type="password" placeholder="Enter confirm password" name="confirmPassword" class="form__control" id="confirm-password">
+                    <span class="form__message"></span>
+                </div>
+                <div class="form__group">
+                    <label for="" class="form__label">Giới tính</label>
+                    <div class="form__group"> 
+                        <div class="form__radio">
+                            <label for="male" class="form__label">Nam</label>
+                            <input type="radio" name="gender" value="male" id="male" class="form__control">
+                                      
+                            <label for="famele" class="form__label">Famale</label>
+                            <input type="radio" name="gender" value="famale" id="famele" class="form__control">
+        
+                            <label for="other" class="form__label">other</label>
+                            <input type="radio" name="gender" value="other" id="other" class="form__control">
+                        </div>  
+                        <span  class="form__message"></span>
+                    </div>
+                </div>
+
+                <button type="submit" class="form__btn">Sign up</button>
+
+            </form>
+        </div>
+    </div>
+
+    <script src="./validator.js"></script>
+    <script>
+        Validator({
+            form: '#form',
+            parentSelector: '.form__group',
+            messageSelector: '.form__message',
+            invalidClass: 'form__group--invalid',
+            rules: [
+                Validator.isRequired('#fullname'),
+                Validator.isRequired('#email'),
+                Validator.isEmail('#email'),
+                Validator.isRequired('#password'),
+                Validator.checkValueLength('#password', 6, 10),
+                Validator.isRequired('#confirm-password'),
+                Validator.isRequired('input[name="gender"]'),
+                Validator.checkConfirmed('#confirm-password', function() {
+                    return document.querySelector('#password').value;
+                })
+            ],
+            // submitBtn: ('.form__btn'),
+            onSubmit: function(data) {
+                alert(` 1. Họ và tên: ${data.fullname} \n 2. Email: ${data.email} \n 3. Password: ${data.password} \n 4. Giới tính: ${data.gender}`);
+            }
+        })
+    </script>
+</body>
+</html>
