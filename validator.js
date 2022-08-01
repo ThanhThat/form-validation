@@ -21,6 +21,7 @@ function Validator(options) {
         for (let i in rules) {
             switch (inputElement.type) {
                 case "radio":
+                case "checkbox":
                     errorMessage = rules[i](
                         formElement.querySelector(
                             `input[name="${inputElement.name}"]:checked`
@@ -84,6 +85,21 @@ function Validator(options) {
                                         formElement.querySelector(
                                             `input[name="${input.name}"]:checked`
                                         ).value;
+                                    break;
+                                case "checkbox":
+                                    // if all checkboxes are not checked
+                                    if (!input.matches(":checked"))
+                                        return values;
+
+                                    // if value[input.name] is not an array
+                                    if (!Array.isArray(values[input.name])) {
+                                        values[input.name] = []; // convert to array
+                                    }
+
+                                    values[input.name].push(input.value);
+                                    break;
+                                case "file":
+                                    values[input.name] = input.files;
                                     break;
                                 default:
                                     values[input.name] = input.value.trim();
@@ -161,7 +177,7 @@ Validator.checkConfirmed = function (selector, getConfirmValue, message) {
     return {
         selector: selector,
         test: function (value) {
-            return value.trim() === getConfirmValue()
+            return value.trim() === getConfirmValue().trim()
                 ? undefined
                 : message || "Giá trị nhập vào chưa chính xác!";
         },

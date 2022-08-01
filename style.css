@@ -168,3 +168,17 @@ body {
     border: 1px solid #fff;
     color: #fff;
 }
+
+#avarta {
+    line-height: 36px;
+}
+
+#address {
+    cursor: pointer;
+    /* text-align: center; */
+    width: max-content;
+}
+
+#address option {
+    background: #d047b6e6;
+}

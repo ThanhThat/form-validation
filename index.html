@@ -44,7 +44,7 @@
                     <label for="" class="form__label">Giới tính</label>
                     <div class="form__group"> 
                         <div class="form__radio">
-                            <label for="male" class="form__label">Nam</label>
+                            <label for="male" class="form__label">Male</label>
                             <input type="radio" name="gender" value="male" id="male" class="form__control">
                                       
                             <label for="famele" class="form__label">Famale</label>
@@ -55,6 +55,40 @@
                         </div>  
                         <span  class="form__message"></span>
                     </div>
+                </div>
+
+                <div class="form__group">
+                    <label for="" class="form__label">Sở thích</label>
+                    <div class="form__group">
+                        <div class="form__radio">
+                            <label for="football" class="form__label">football</label>
+                            <input type="checkbox" name="interests" value="football" id="football" class="form__control">
+                
+                            <label for="watch-movie" class="form__label">watch movie</label>
+                            <input type="checkbox" name="interests" value="watch movie" id="watch-movie" class="form__control">
+                
+                            <label for="travel" class="form__label">travel</label>
+                            <input type="checkbox" name="interests" value="travel" id="travel" class="form__control">
+                        </div>
+                        <span class="form__message"></span>
+                    </div>
+                </div>
+
+                <div class="form__group">
+                    <label for="avarta" class="form__label">Avarta</label>
+                    <input type="file" name="avarta" id="avarta" class="form__control">
+                    <span class="form__message"></span>
+                </div>
+
+                <div class="form__group">
+                    <label for="address" class="form__label">Address</label>
+                    <select name="address" id="address" class="form__control">
+                        <option value="">---Chọn tỉnh thành---</option>
+                        <option value="baclieu">Bạc Liêu</option>
+                        <option value="soctrang">Sóc Trăng</option>
+                        <option value="camau">Cà Mau</option>
+                    </select>
+                    <span class="form__message"></span>
                 </div>
 
                 <button type="submit" class="form__btn">Sign up</button>
@@ -71,15 +105,18 @@
             messageSelector: '.form__message',
             invalidClass: 'form__group--invalid',
             rules: [
-                Validator.isRequired('#fullname'),
-                Validator.isRequired('#email'),
+                // Validator.isRequired('#fullname'),
+                // Validator.isRequired('#email'),
                 Validator.isEmail('#email'),
                 Validator.isRequired('#password'),
                 Validator.checkValueLength('#password', 6, 10),
                 Validator.isRequired('#confirm-password'),
                 Validator.isRequired('input[name="gender"]'),
+                Validator.isRequired('input[name="interests"]'),
+                Validator.isRequired('#avarta'),
+                Validator.isRequired('#address'),
                 Validator.checkConfirmed('#confirm-password', function() {
-                    return document.querySelector('#password').value.trim();
+                    return document.querySelector('#password').value;
                 })
             ],
             // submitBtn: ('.form__btn'),
